@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>sanddata.no.common.datalayer</id>
+    <version>1.0.1</version>
+    <title>Datalayer for AMS project</title>
+    <authors>Roy Sand</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/roysand/sanddata.no.common.git/</projectUrl>
+    <description>Description</description>
+    <releaseNotes>1. release.</releaseNotes>
+    <copyright>Sanddata</copyright>
+    <tags>Sanddata common Datalayer</tags>
+  </metadata>
+</package>
