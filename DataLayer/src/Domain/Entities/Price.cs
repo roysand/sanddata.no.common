@@ -8,8 +8,6 @@ namespace DataLayer.Domain.Entities;
 
         public DateTime PricePeriod { get; set; }
 
-        public DateTime Modified { get; set; }
-
         public string Location { get; set; } = null!;
 
         public string Currency { get; set; } = null!;
