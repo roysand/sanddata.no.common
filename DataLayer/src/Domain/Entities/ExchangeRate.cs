@@ -11,7 +11,7 @@ public class ExchangeRate
 
     public DateTime ExchangeRatePeriod { get; set; }
 
-    public decimal ExchangeRate1 { get; set; }
+    public decimal ExchangeRateValue { get; set; }
 
     public int ExchangeRateType { get; set; }
 
