@@ -1,6 +1,6 @@
 ﻿namespace DataLayer.Domain.Common.Entities;
 
-public abstract class AuditableEntity
+public abstract class AuditableEntity : AuditableEntityBase
 {
-    public DateTime? Modified { get; set; }
+    public DateTime? Created { get; set; }
 }

@@ -2,7 +2,7 @@
 
 namespace DataLayer.Domain.Entities;
 
-    public class Price : AuditableEntity
+    public class Price : AuditableEntityBase
     {
         public Guid PriceId { get; set; }
 

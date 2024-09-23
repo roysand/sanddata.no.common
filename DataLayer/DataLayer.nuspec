@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>sanddata.no.common.datalayer</id>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
     <title>Datalayer for AMS project</title>
     <authors>Roy Sand</authors>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
