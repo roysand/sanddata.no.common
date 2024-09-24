@@ -426,7 +426,7 @@ FodyWeavers.xsd
 .idea/**/dbnavigator.xml
 
 # Roy
-.idea/
+**/.idea/**
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
