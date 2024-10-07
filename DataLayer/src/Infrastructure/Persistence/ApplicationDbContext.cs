@@ -18,7 +18,12 @@ public partial class ApplicationDbContext(
     public DbSet<Price> PriceSet { get; set; } = null!;
     public DbSet<PriceDetail> PriceDetailSet { get; set; } = null!;
     public DbSet<ExchangeRate> ExchangeRateSet { get; set; } = null!;
-
+    
+    // Authorization
+    public virtual DbSet<Account> AccountSet { get; set; }
+    public virtual DbSet<AccountContact> AccountContactSet { get; set; }
+    public virtual DbSet<ApiKey> ApiKeySet { get; set; }
+    
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
         var result = await base.SaveChangesAsync(cancellationToken);
