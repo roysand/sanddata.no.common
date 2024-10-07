@@ -20,9 +20,9 @@ public partial class ApplicationDbContext(
     public DbSet<ExchangeRate> ExchangeRateSet { get; set; } = null!;
     
     // Authorization
-    public virtual DbSet<Account> AccountSet { get; set; }
-    public virtual DbSet<AccountContact> AccountContactSet { get; set; }
-    public virtual DbSet<ApiKey> ApiKeySet { get; set; }
+    public DbSet<Account> AccountSet { get; set; }
+    public DbSet<AccountContact> AccountContactSet { get; set; }
+    public DbSet<ApiKey> ApiKeySet { get; set; }
     
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
