@@ -2,5 +2,5 @@
 
 public abstract class AuditableEntity : AuditableEntityBase
 {
-    public DateTime? Created { get; set; }
+    public DateTime? CreatedDate { get; set; }
 }
