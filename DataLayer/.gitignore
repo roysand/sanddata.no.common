@@ -427,6 +427,8 @@ FodyWeavers.xsd
 
 # Roy
 **/.idea/**
+.idea/**
+
 # Gradle
 .idea/**/gradle.xml
 .idea/**/libraries
