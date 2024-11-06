@@ -7,8 +7,6 @@ public class ApiKey : AuditableEntity
     public Guid ApiKeyId { get; set; }
 
     public string Key { get; set; } = null!;
-
-    public bool Admin { get; set; }
     
     public virtual ICollection<Account> Account { get; set; } = new List<Account>();
 }
