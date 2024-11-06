@@ -31,7 +31,7 @@ public class PriceConfiguration : IEntityTypeConfiguration<Price>
             .IsUnicode(false);
         builder.Property(e => e.Max).HasColumnType("decimal(19, 5)");
         builder.Property(e => e.Min).HasColumnType("decimal(19, 5)");
-        builder.Property(e => e.ModifiedDate).HasPrecision(3);
+        builder.Property(e => e.Modified).HasPrecision(3);
         builder.Property(e => e.OutDomain)
             .HasMaxLength(20)
             .IsUnicode(false);

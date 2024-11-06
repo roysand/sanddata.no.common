@@ -2,5 +2,5 @@
 
 public abstract class AuditableEntityBase
 {
-    public DateTime ModifiedDate { get; set; }
+    public DateTime ChangedDate { get; set; }
 }

@@ -2,11 +2,12 @@
 
 namespace DataLayer.Domain.Entities;
 
-    public class Price : AuditableEntityBase
+    public class Price
     {
         public Guid PriceId { get; set; }
 
         public DateTime PricePeriod { get; set; }
+        public DateTime Modified { get; set; }
 
         public string Location { get; set; } = null!;
 
