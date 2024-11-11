@@ -18,6 +18,7 @@ public partial class ApplicationDbContext(
     public DbSet<Price> PriceSet { get; set; } = null!;
     public DbSet<PriceDetail> PriceDetailSet { get; set; } = null!;
     public DbSet<ExchangeRate> ExchangeRateSet { get; set; } = null!;
+    public DbSet<Location> LocationSet { get; set; } = null!;
     
     // Authorization
     public DbSet<Account> AccountSet { get; set; }

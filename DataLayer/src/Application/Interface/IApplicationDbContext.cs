@@ -12,8 +12,8 @@ public interface IApplicationDbContext
     DbSet<Price> PriceSet { get; set; }
     DbSet<PriceDetail> PriceDetailSet { get; set; }
     DbSet<ExchangeRate> ExchangeRateSet { get; set; }
+    public DbSet<Location> LocationSet { get; set; } 
     
-        
     // Authorization
     DbSet<Account> AccountSet { get; set; }
     DbSet<AccountContact> AccountContactSet { get; set; }
