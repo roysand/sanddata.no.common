@@ -40,7 +40,7 @@ public class MqttConfig : IMqttConfig
 
     public bool MQTTUseTLS()
     {
-        return _config.GetConfigValue<bool>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}");
+        return _config.GetConfigValue<bool>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}",true);
     }
 
     public int MQTTDelayCountBeforeSaveToDb()
