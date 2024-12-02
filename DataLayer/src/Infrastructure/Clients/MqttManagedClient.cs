@@ -4,6 +4,7 @@ using DataLayer.Domain.Common.Enum;
 using DataLayer.Domain.Entities;
 using DataLayer.Domain.Models.AmsLeser;
 using DataLayer.Infrastructure.Interface;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MQTTnet;
 using MQTTnet.Client;
@@ -17,13 +18,15 @@ namespace DataLayer.Infrastructure.Clients
     {
         private readonly IConfig _config;
         private readonly ILogger<MqttManagedClient> _logger;
+        private readonly IConfiguration _configuration;
         private readonly string _clientId = System.Net.Dns.GetHostName() + "-" + Guid.NewGuid().ToString().Substring(0,8);
         private IManagedMqttClient? _client;
         private readonly MqttFactory _factory;
-        public MqttManagedClient(IConfig config, ILogger<MqttManagedClient> logger)
+        public MqttManagedClient(IConfig config, ILogger<MqttManagedClient> logger, IConfiguration configuration)
         {
             _config = config;
             _logger = logger;
+            _configuration = configuration;
             _factory = new MqttFactory();
         }
         private async Task ConnectAsync()
@@ -34,7 +37,8 @@ namespace DataLayer.Infrastructure.Clients
                 .WithTcpServer(_config.MqttConfig.MQTTServerURI(), _config.MqttConfig.MQTTServerPortNr())
                 .WithCleanSession();
             
-            var options = _config.MqttConfig.MQTTUseTLS()
+            // Workaround - original code does not work!! _config.MqttConfig.MQTTUseTLS(); 
+            var options = _configuration.GetValue<bool>("MQTT:MQTTUseTLS")
                 ? messageBuilder
                     .WithTlsOptions(o => o.WithSslProtocols(SslProtocols.Tls13))
                     .Build()
