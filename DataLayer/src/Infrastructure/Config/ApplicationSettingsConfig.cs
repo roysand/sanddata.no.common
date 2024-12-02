@@ -5,7 +5,7 @@ namespace DataLayer.Infrastructure.Config;
 
 public class ApplicationSettingsConfig : IApplicationSettingsConfig
 {
-    private readonly string ConfigParentKey = "ApplicationSettings";
+    private readonly string _configParentKey = "ApplicationSettings";
 
     private readonly IConfig _config;
 
@@ -15,12 +15,17 @@ public class ApplicationSettingsConfig : IApplicationSettingsConfig
     }
     public string DbConnectionString()
     {
-        return _config.GetConfigValue<string>($"{ConfigParentKey}:{MethodBase.GetCurrentMethod()!.Name}");
+        return _config.GetConfigValue<string>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}");
 
     }
 
     public bool EnableSensitiveDataLogging()
     {
-        return _config.GetConfigValue<bool>($"{ConfigParentKey}:{MethodBase.GetCurrentMethod()!.Name}", false);
+        return _config.GetConfigValue<bool>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}", false);
+    }
+    
+    public string Location()
+    {
+        return _config.GetConfigValue<string>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}");
     }
 }

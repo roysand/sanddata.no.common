@@ -8,12 +8,14 @@ public class Config : IConfig
 {
     private readonly IConfiguration _configuration;
     public IApplicationSettingsConfig ApplicationSettingsConfig { get; }
+    public IMqttConfig MqttConfig { get; }
 
     public Config(IConfiguration configuration)
     {
         _configuration = configuration;
         
         ApplicationSettingsConfig = new ApplicationSettingsConfig(this);
+        MqttConfig = new MqttConfig(this);
     }
     
     public T GetConfigValue<T>(string configKey, bool mustExist = true)
