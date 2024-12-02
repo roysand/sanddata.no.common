@@ -6,10 +6,10 @@ public class AMSReaderData
 {
     public DateTime TimeStamp { get; } = DateTime.Now; 
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [JsonProperty("name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
 
     [JsonProperty("up")]
     public int Up { get; set; }
@@ -27,5 +27,10 @@ public class AMSReaderData
     public double Temp { get; set; }
 
     [JsonProperty("data")]
-    public AMSReaderDataDetail Data { get; set; }    
+    public AMSReaderDataDetail Data { get; set; }
+
+    public AMSReaderData()
+    {
+        Data = new AMSReaderDataDetail();
+    }
 }

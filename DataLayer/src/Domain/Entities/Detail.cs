@@ -1,3 +1,5 @@
+using DataLayer.Domain.Common.Enum;
+
 namespace DataLayer.Domain.Entities;
 
 public class Detail
@@ -11,6 +13,8 @@ public class Detail
     public string Location { get; set; } = null!;
 
     public string? Name { get; set; }
+    
+    public ObisCodeId ObisCodeId { get; set; }
 
     public string? ObisCode { get; set; }
 
@@ -18,7 +22,11 @@ public class Detail
 
     public string? ValueStr { get; set; }
 
-    public decimal? ValueNum { get; set; }
+    public decimal ValueNum { get; set; }
 
-    public byte? ObisCodeId { get; set; }
+    public Detail()
+    {
+        Id = Guid.NewGuid();
+        ObisCodeId = Common.Enum.ObisCodeId.PowerUsed;
+    }
 }

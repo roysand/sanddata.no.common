@@ -5,13 +5,13 @@ namespace DataLayer.Domain.Models.AmsLeser;
 public class AMSReaderDataDetail
 {
     [JsonProperty("lv")]
-    public string Lv { get; set; }
+    public string Lv { get; set; } = string.Empty;
 
     [JsonProperty("id")]
-    public string Id { get; set; }
+    public string Id { get; set; } = string.Empty;
 
     [JsonProperty("type")]
-    public string Type { get; set; }
+    public string Type { get; set; } = string.Empty;
 
     [JsonProperty("P")]
     public int P { get; set; }
