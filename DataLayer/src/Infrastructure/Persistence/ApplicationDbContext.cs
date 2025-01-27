@@ -37,6 +37,11 @@ public partial class ApplicationDbContext(
         {
             var connectionString =
                 config.ApplicationSettingsConfig.DbConnectionString();
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new ApplicationException("No connection string configured.");
+            }
             
             optionsBuilder.UseSqlServer(connectionString,
                     opts => opts.CommandTimeout(sqlTimeout))
