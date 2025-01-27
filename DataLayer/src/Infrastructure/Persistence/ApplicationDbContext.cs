@@ -38,7 +38,7 @@ public partial class ApplicationDbContext(
             var connectionString =
                 config.ApplicationSettingsConfig.DbConnectionString();
 
-            if (string.IsNullOrEmpty(connectionString))
+            if (string.IsNullOrEmpty(connectionString) || connectionString.Trim().Length < 40)
             {
                 throw new ApplicationException("No connection string configured.");
             }
