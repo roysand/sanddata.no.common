@@ -20,9 +20,5 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
         builder.Property(e => e.SerialNumber)
             .HasMaxLength(20)
             .IsUnicode(false);
-
-        builder.HasOne(d => d.ApiKey).WithMany(p => p.Location)
-            .HasForeignKey(d => d.ApiKeyId)
-            .HasConstraintName("FK_Location_ApiKey");
     }
 }
