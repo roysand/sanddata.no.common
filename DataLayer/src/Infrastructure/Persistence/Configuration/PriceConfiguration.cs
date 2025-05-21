@@ -26,9 +26,6 @@ public class PriceConfiguration : IEntityTypeConfiguration<Price>
         builder.Property(e => e.InDomain)
             .HasMaxLength(20)
             .IsUnicode(false);
-        builder.Property(e => e.Location)
-            .HasMaxLength(50)
-            .IsUnicode(false);
         builder.Property(e => e.Max).HasColumnType("decimal(19, 5)");
         builder.Property(e => e.Min).HasColumnType("decimal(19, 5)");
         builder.Property(e => e.Modified).HasPrecision(3);
@@ -38,5 +35,10 @@ public class PriceConfiguration : IEntityTypeConfiguration<Price>
         builder.Property(e => e.PricePeriod).HasPrecision(3);
         builder.Property(e => e.Unit)
             .HasMaxLength(5)
-            .IsUnicode(false);    }
+            .IsUnicode(false);
+        builder.HasOne(e => e.Location)
+            .WithMany()
+            .HasForeignKey(e => e.LocationId)
+            .OnDelete(DeleteBehavior.Restrict);
+    }
 }

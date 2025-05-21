@@ -9,7 +9,7 @@ namespace DataLayer.Domain.Entities;
         public DateTime PricePeriod { get; set; }
         public DateTime Modified { get; set; }
 
-        public string Location { get; set; } = null!;
+        public Guid LocationId { get; set; } 
 
         public string Currency { get; set; } = null!;
 
@@ -24,6 +24,7 @@ namespace DataLayer.Domain.Entities;
         public string InDomain { get; set; } = null!;
 
         public string OutDomain { get; set; } = null!;
+        public Location Location { get; set; }
 
         public List<PriceDetail> PriceDetailList { get; private set; }
 
@@ -33,11 +34,11 @@ namespace DataLayer.Domain.Entities;
             PriceId = Guid.NewGuid();
         }
 
-        public Price(Guid priceId, DateTime pricePeriod, string location, string currency, string unit, decimal average, decimal max, decimal min, string inDomain, string outDomain, List<PriceDetail> priceDetailList)
+        public Price(Guid priceId, DateTime pricePeriod, Guid locationId, string currency, string unit, decimal average, decimal max, decimal min, string inDomain, string outDomain, List<PriceDetail> priceDetailList)
         {
             PriceId = priceId;
             PricePeriod = pricePeriod;
-            Location = location;
+            LocationId = locationId;
             Currency = currency;
             Unit = unit;
             Average = average;

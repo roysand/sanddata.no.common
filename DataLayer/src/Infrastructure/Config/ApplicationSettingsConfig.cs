@@ -24,8 +24,8 @@ public class ApplicationSettingsConfig : IApplicationSettingsConfig
         return _config.GetConfigValue<bool>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}", false);
     }
     
-    public string Location()
+    public Guid LocationId()
     {
-        return _config.GetConfigValue<string>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}");
+        return _config.GetConfigValue<Guid>($"{_configParentKey}:{MethodBase.GetCurrentMethod()!.Name}");
     }
 }

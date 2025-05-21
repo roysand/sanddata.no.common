@@ -133,7 +133,7 @@ namespace DataLayer.Infrastructure.Clients
                 ValueStr = "Active power",
                 ObisCodeId = ObisCodeId.PowerUsed,
                 Unit = "kW",
-                Location = _config.ApplicationSettingsConfig.Location(),
+                LocationId = _config.ApplicationSettingsConfig.LocationId(),
                 ValueNum = (decimal)data.Data.P / 1000
             };
         

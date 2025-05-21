@@ -4,11 +4,12 @@ public class Minute
 {
     public DateTime TimeStamp { get; set; }
 
-    public string Location { get; set; } = null!;
+    public Guid LocationId { get; set; }
 
     public string? Unit { get; set; }
 
     public decimal? ValueNum { get; set; }
 
     public short? Count { get; set; }
+    public Location Location { get; set; }
 }
