@@ -1,20 +1,22 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
 
-public class Location
+namespace DataLayer.Domain.Entities;
+
+public class Location : AuditableEntity
 {
     public Guid LocationId { get; set; }
 
     public string LocationName { get; set; } = null!;
 
     public string? LocationAddress { get; set; }
+    public string Zone { get; set; } = string.Empty;
 
     public string? SerialNumber { get; set; }
 
-    public Guid? ApiKeyId { get; set; }
+    public ICollection<User> Users { get; set; }
 
-    public DateTime CreatedDate { get; set; }
-
-    public DateTime ChangedDate { get; set; }
-
-    public virtual ApiKey? ApiKey { get; set; }
+    public Location()
+    {
+        Users = new List<User>();
+    }
 }

@@ -19,10 +19,10 @@ public partial class ApplicationDbContext(
     public DbSet<PriceDetail> PriceDetailSet { get; set; } = null!;
     public DbSet<ExchangeRate> ExchangeRateSet { get; set; } = null!;
     public DbSet<Location> LocationSet { get; set; } = null!;
+    public DbSet<UserLocation> UserLocationSet { get; set; } = null!;
     
     // Authorization
-    public DbSet<Account> AccountSet { get; set; }
-    public DbSet<AccountContact> AccountContactSet { get; set; }
+    public DbSet<User> UserSet { get; set; }
     public DbSet<ApiKey> ApiKeySet { get; set; }
     
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
@@ -37,11 +37,16 @@ public partial class ApplicationDbContext(
         {
             var connectionString =
                 config.ApplicationSettingsConfig.DbConnectionString();
+
+            if (string.IsNullOrEmpty(connectionString) || connectionString.Trim().Length < 40)
+            {
+                throw new ApplicationException("No connection string configured.");
+            }
             
             optionsBuilder.UseSqlServer(connectionString,
                     opts => opts.CommandTimeout(sqlTimeout))
                 .EnableSensitiveDataLogging(config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
-                .EnableDetailedErrors(true)
+                .EnableDetailedErrors(false)
                 .UseLoggerFactory(loggerFactory);
         }
 
