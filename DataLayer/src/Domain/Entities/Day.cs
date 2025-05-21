@@ -4,7 +4,7 @@ public class Day
 {
     public DateTime Date { get; set; }
 
-    public string Location { get; set; } = null!;
+    public Guid LocationId { get; set; }
 
     public string? Unit { get; set; }
 
@@ -13,4 +13,5 @@ public class Day
     public short? Count { get; set; }
 
     public decimal? PriceNok { get; set; }
+    public Location Location { get; set; }
 }

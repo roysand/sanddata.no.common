@@ -4,5 +4,5 @@ public interface IApplicationSettingsConfig
 {
     string DbConnectionString();
     bool EnableSensitiveDataLogging();
-    string Location();
+    Guid LocationId();
 }

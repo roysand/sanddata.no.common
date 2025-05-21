@@ -10,7 +10,7 @@ public class Detail
 
     public DateTime TimeStamp { get; set; }
 
-    public string Location { get; set; } = null!;
+    public Guid LocationId { get; set; }
 
     public string? Name { get; set; }
     
@@ -23,6 +23,7 @@ public class Detail
     public string? ValueStr { get; set; }
 
     public decimal ValueNum { get; set; }
+    public Location Location { get; set; }
 
     public Detail()
     {

@@ -8,16 +8,13 @@ public class DayConfiguration : IEntityTypeConfiguration<Day>
 {
     public void Configure(EntityTypeBuilder<Day> builder)
     {
-        builder.HasKey(e => new { e.Date, e.Location }).HasName("day_pk");
+        builder.HasKey(e => new { e.Date, e.LocationId }).HasName("day_pk");
 
         builder.ToTable("day");
 
         builder.HasIndex(e => e.Date, "IX_Day_Date");
 
         builder.Property(e => e.Date).HasPrecision(3);
-        builder.Property(e => e.Location)
-            .HasMaxLength(50)
-            .IsUnicode(false);
         builder.Property(e => e.PriceNok)
             .HasColumnType("decimal(19, 5)")
             .HasColumnName("PriceNOK");
@@ -25,5 +22,10 @@ public class DayConfiguration : IEntityTypeConfiguration<Day>
             .HasMaxLength(5)
             .IsUnicode(false);
         builder.Property(e => e.ValueNum).HasColumnType("decimal(19, 5)");
+        
+        builder.HasOne(e => e.Location)
+            .WithMany()
+            .HasForeignKey(e => e.LocationId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
