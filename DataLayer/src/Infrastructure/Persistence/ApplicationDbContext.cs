@@ -19,10 +19,8 @@ public partial class ApplicationDbContext(
     public DbSet<PriceDetail> PriceDetailSet { get; set; } = null!;
     public DbSet<ExchangeRate> ExchangeRateSet { get; set; } = null!;
     public DbSet<Location> LocationSet { get; set; } = null!;
-    public DbSet<UserLocation> UserLocationSet { get; set; } = null!;
     
     // Authorization
-    public DbSet<User> UserSet { get; set; }
     public DbSet<ApiKey> ApiKeySet { get; set; }
     
     public async Task<int> SaveChanges(CancellationToken cancellationToken)

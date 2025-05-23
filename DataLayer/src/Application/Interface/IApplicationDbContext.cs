@@ -13,11 +13,9 @@ public interface IApplicationDbContext
     DbSet<PriceDetail> PriceDetailSet { get; set; }
     DbSet<ExchangeRate> ExchangeRateSet { get; set; }
     DbSet<Location> LocationSet { get; set; } 
-    DbSet<UserLocation> UserLocationSet { get; set; }
     
     // Authorization
     DbSet<ApiKey> ApiKeySet { get; set; }
-    DbSet<User> UserSet { get; set; }
 
     Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }
