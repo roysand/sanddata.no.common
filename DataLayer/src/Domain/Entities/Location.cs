@@ -15,4 +15,5 @@ public class Location : AuditableEntity
     public Guid? ApiKeyId { get; set; }
 
     public virtual ApiKey? ApiKey { get; set; }
+    public virtual ICollection<Detail> Details { get; set; } = new List<Detail>();
 }
