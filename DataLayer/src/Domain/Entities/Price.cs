@@ -24,7 +24,7 @@ namespace DataLayer.Domain.Entities;
         public string InDomain { get; set; } = null!;
 
         public string OutDomain { get; set; } = null!;
-        public Location Location { get; set; }
+        public virtual Location? Location { get; set; }
 
         public List<PriceDetail> PriceDetailList { get; private set; }
 
