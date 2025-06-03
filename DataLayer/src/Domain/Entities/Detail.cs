@@ -23,7 +23,7 @@ public class Detail
     public string? ValueStr { get; set; }
 
     public decimal ValueNum { get; set; }
-    public Location Location { get; set; }
+    public virtual Location? Location { get; set; }
 
     public Detail()
     {

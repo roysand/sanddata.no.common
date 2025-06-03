@@ -42,7 +42,11 @@ public partial class ApplicationDbContext(
             }
             
             optionsBuilder.UseSqlServer(connectionString,
-                    opts => opts.CommandTimeout(sqlTimeout))
+                    opts =>
+                    {
+                        opts.CommandTimeout(sqlTimeout);
+                        opts.EnableRetryOnFailure();
+                    })
                 .EnableSensitiveDataLogging(config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
                 .EnableDetailedErrors(false)
                 .UseLoggerFactory(loggerFactory);
