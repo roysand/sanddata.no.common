@@ -22,7 +22,7 @@ public class MinuteConfiguration : IEntityTypeConfiguration<Minute>
         builder.Property(e => e.ValueNum).HasColumnType("decimal(19, 5)");
 
         builder.HasOne(e => e.Location)
-            .WithMany()
+            .WithMany(m => m.Minutes)
             .HasForeignKey(e => e.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
     }

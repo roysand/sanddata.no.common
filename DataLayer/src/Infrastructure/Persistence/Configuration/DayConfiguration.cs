@@ -24,7 +24,7 @@ public class DayConfiguration : IEntityTypeConfiguration<Day>
         builder.Property(e => e.ValueNum).HasColumnType("decimal(19, 5)");
         
         builder.HasOne(e => e.Location)
-            .WithMany()
+            .WithMany(d => d.Days)
             .HasForeignKey(e => e.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
     }

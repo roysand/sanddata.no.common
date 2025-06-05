@@ -20,7 +20,7 @@ public class HourConfiguration : IEntityTypeConfiguration<Hour>
             .IsUnicode(false);
         builder.Property(e => e.ValueNum).HasColumnType("decimal(19, 5)");
         builder.HasOne(e => e.Location)
-            .WithMany()
+            .WithMany(h =>h.Hours)
             .HasForeignKey(e => e.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
     }

@@ -32,7 +32,7 @@ public class DetailConfiguration : IEntityTypeConfiguration<Detail>
             .HasMaxLength(100)
             .IsUnicode(false);
         builder.HasOne(e => e.Location)
-            .WithMany()
+            .WithMany(d => d.Details)
             .HasForeignKey(e => e.LocationId)
             .OnDelete(DeleteBehavior.Restrict);
     }
