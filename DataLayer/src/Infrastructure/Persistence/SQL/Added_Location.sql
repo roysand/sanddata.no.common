@@ -18,6 +18,27 @@ END
 ALTER TABLE dbo.minute
     ADD LocationId UNIQUEIDENTIFIER NULL;
 
+ALTER TABLE hour
+    ADD LocationId UNIQUEIDENTIFIER NULL;
+
+ALTER TABLE hour
+    ADD CONSTRAINT FK_Hour_Location
+        FOREIGN KEY (LocationId) REFERENCES location(LocationId);
+
+BEGIN TRAN
+UPDATE h
+SET d.LocationId = l.LocationId
+    FROM dbo.hour h
+JOIN dbo.location l ON l.LocationName = h.Location;
+COMMIT TRAN
+
+ALTER TABLE dbo.Hour
+ALTER COLUMN LocationId UNIQUEIDENTIFIER NOT NULL;
+
+
+ALTER TABLE dbo.hour
+DROP COLUMN Location;    
+     
 -- 2. Update LocationId with values converted from the old Location column if possible (manual step required)
 begin tran
 update m
