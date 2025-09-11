@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.0.39</Version>
+        <Version>1.0.40</Version>
         <Title>Datalayer for AMS project</Title>
         <Authors>Roy Sand</Authors>
         <Copyright>Sanddata</Copyright>
@@ -27,6 +27,7 @@
       <PackageReference Include="MQTTnet" Version="4.3.7.1207" />
       <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.3.7.1207" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
     </ItemGroup>
 
 </Project>
