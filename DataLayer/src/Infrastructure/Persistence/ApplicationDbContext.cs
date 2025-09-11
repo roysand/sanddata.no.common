@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using DataLayer.Application.Interface;
 using DataLayer.Domain.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -9,7 +10,7 @@ namespace DataLayer.Infrastructure.Persistence;
 public partial class ApplicationDbContext(
     IConfig config,
     ILoggerFactory loggerFactory)
-    : DbContext, IApplicationDbContext
+    : IdentityDbContext<User>, IApplicationDbContext
 {
     public DbSet<RawData> RawSet { get; set; } = null!;
     public DbSet<Detail> DetailSet { get; set; } = null!;
