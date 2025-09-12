@@ -7,11 +7,25 @@ using Microsoft.Extensions.Logging;
 
 namespace DataLayer.Infrastructure.Persistence;
 
-public partial class ApplicationDbContext(
-    IConfig config,
-    ILoggerFactory loggerFactory)
-    : IdentityDbContext<User>, IApplicationDbContext
+public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbContext
 {
+    private readonly IConfig _config;
+    private readonly ILoggerFactory _loggerFactory;
+
+    public ApplicationDbContext(IConfig config, ILoggerFactory loggerFactory)
+        : base(GetOptions(config))
+    {
+        _config = config;
+        _loggerFactory = loggerFactory;
+    }
+    
+    private static DbContextOptions<ApplicationDbContext> GetOptions(IConfig config)
+    {
+        var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+        optionsBuilder.UseSqlServer(config.ApplicationSettingsConfig.DbConnectionString());
+        return optionsBuilder.Options;
+    }
+    
     public DbSet<RawData> RawSet { get; set; } = null!;
     public DbSet<Detail> DetailSet { get; set; } = null!;
     public DbSet<Minute> MinuteSet { get; set; } = null!;
@@ -35,7 +49,7 @@ public partial class ApplicationDbContext(
         if (!optionsBuilder.IsConfigured)
         {
             var connectionString =
-                config.ApplicationSettingsConfig.DbConnectionString();
+                _config.ApplicationSettingsConfig.DbConnectionString();
 
             if (string.IsNullOrEmpty(connectionString) || connectionString.Trim().Length < 40)
             {
@@ -48,9 +62,9 @@ public partial class ApplicationDbContext(
                         opts.CommandTimeout(sqlTimeout);
                         opts.EnableRetryOnFailure();
                     })
-                .EnableSensitiveDataLogging(config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
+                .EnableSensitiveDataLogging(_config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
                 .EnableDetailedErrors(false)
-                .UseLoggerFactory(loggerFactory);
+                .UseLoggerFactory(_loggerFactory);
         }
 
         base.OnConfiguring(optionsBuilder);
