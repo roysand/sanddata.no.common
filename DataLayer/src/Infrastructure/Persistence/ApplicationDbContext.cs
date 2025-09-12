@@ -13,16 +13,16 @@ public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicatio
     private readonly ILoggerFactory _loggerFactory;
 
     public ApplicationDbContext(IConfig config, ILoggerFactory loggerFactory)
-        : base(GetOptions(config))
+        : base(GetOptions())
     {
         _config = config;
         _loggerFactory = loggerFactory;
     }
     
-    private static DbContextOptions<ApplicationDbContext> GetOptions(IConfig config)
+    private static DbContextOptions<ApplicationDbContext> GetOptions()
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-        optionsBuilder.UseSqlServer(config.ApplicationSettingsConfig.DbConnectionString());
+        // optionsBuilder.UseSqlServer(config.ApplicationSettingsConfig.DbConnectionString());
         return optionsBuilder.Options;
     }
     
@@ -43,32 +43,32 @@ public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicatio
         var result = await base.SaveChangesAsync(cancellationToken);
         return result;
     }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        var sqlTimeout = 600;
-        if (!optionsBuilder.IsConfigured)
-        {
-            var connectionString =
-                _config.ApplicationSettingsConfig.DbConnectionString();
-
-            if (string.IsNullOrEmpty(connectionString) || connectionString.Trim().Length < 40)
-            {
-                throw new ApplicationException("No connection string configured.");
-            }
-            
-            optionsBuilder.UseSqlServer(connectionString,
-                    opts =>
-                    {
-                        opts.CommandTimeout(sqlTimeout);
-                        opts.EnableRetryOnFailure();
-                    })
-                .EnableSensitiveDataLogging(_config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
-                .EnableDetailedErrors(false)
-                .UseLoggerFactory(_loggerFactory);
-        }
-
-        base.OnConfiguring(optionsBuilder);
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     var sqlTimeout = 600;
+    //     if (!optionsBuilder.IsConfigured)
+    //     {
+    //         var connectionString =
+    //             _config.ApplicationSettingsConfig.DbConnectionString();
+    //
+    //         if (string.IsNullOrEmpty(connectionString) || connectionString.Trim().Length < 40)
+    //         {
+    //             throw new ApplicationException("No connection string configured.");
+    //         }
+    //         
+    //         optionsBuilder.UseSqlServer(connectionString,
+    //                 opts =>
+    //                 {
+    //                     opts.CommandTimeout(sqlTimeout);
+    //                     opts.EnableRetryOnFailure();
+    //                 })
+    //             .EnableSensitiveDataLogging(_config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
+    //             .EnableDetailedErrors(false)
+    //             .UseLoggerFactory(_loggerFactory);
+    //     }
+    //
+    //     base.OnConfiguring(optionsBuilder);
+    // }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
