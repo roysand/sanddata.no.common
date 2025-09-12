@@ -71,6 +71,7 @@ public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicatio
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         OnModelCreatingPartial(modelBuilder);
     }
