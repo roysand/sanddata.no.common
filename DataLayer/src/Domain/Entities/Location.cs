@@ -19,5 +19,5 @@ public class Location : AuditableEntity
     public virtual ICollection<Minute> Minutes { get; set; } = new List<Minute>();
     public virtual ICollection<Hour> Hours { get; set; } = new List<Hour>();
     public virtual ICollection<Day> Days { get; set; } = new List<Day>();
-    public virtual ICollection<User> Users { get; set; } = new List<User>();
+    public virtual ICollection<AppUserLocation> UserLocations { get; init; } = new List<AppUserLocation>();
 }
