@@ -2,7 +2,7 @@
 
 public class AppUserLocation
 {
-    public int AppUserId { get; set; }
+    public Guid AppUserId { get; set; }
     public AppUser AppUser { get; set; } = null!;
 
     public int LocationId { get; set; }
