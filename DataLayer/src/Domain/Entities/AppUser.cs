@@ -8,18 +8,18 @@ public class AppUser
     public string HashedPassword { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
     public virtual ICollection<AppUserLocation>? AppUserLocations { get; init; } = new List<AppUserLocation>();
+    public virtual ICollection<AppUserRole>? AppUserRoles  { get; init; } = new List<AppUserRole>();
 
     public AppUser()
     {
     }
 
-    public AppUser(Guid appUserId, string firstName, string lastName, string hashedPassword, string email, ICollection<AppUserLocation>? appUserLocations = null)
+    public AppUser(Guid appUserId, string firstName, string lastName, string hashedPassword, string email)
     {
         AppUserId = appUserId;
         FirstName = firstName;
         LastName = lastName;
         HashedPassword = hashedPassword;
         Email = email;
-        AppUserLocations = appUserLocations;
     }
 }
