@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace DataLayer.Infrastructure.Persistence;
 
-public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicationDbContext
+public partial class ApplicationDbContext : DbContext, IApplicationDbContext
 {
     private readonly IConfig _config;
     private readonly ILoggerFactory _loggerFactory;
@@ -22,7 +22,6 @@ public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicatio
     private static DbContextOptions<ApplicationDbContext> GetOptions()
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-        // optionsBuilder.UseSqlServer(config.ApplicationSettingsConfig.DbConnectionString());
         return optionsBuilder.Options;
     }
     
@@ -34,41 +33,18 @@ public partial class ApplicationDbContext : IdentityDbContext<User>, IApplicatio
     public DbSet<PriceDetail> PriceDetailSet { get; set; } = null!;
     public DbSet<ExchangeRate> ExchangeRateSet { get; set; } = null!;
     public DbSet<Location> LocationSet { get; set; } = null!;
-    
+    public DbSet<AppUserLocation> AppUserLocationSet { get; set; }
+
     // Authorization
     public DbSet<ApiKey> ApiKeySet { get; set; }
+    public DbSet<AppUser> AppUserSet { get; set; }
     
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
         var result = await base.SaveChangesAsync(cancellationToken);
         return result;
     }
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //     var sqlTimeout = 600;
-    //     if (!optionsBuilder.IsConfigured)
-    //     {
-    //         var connectionString =
-    //             _config.ApplicationSettingsConfig.DbConnectionString();
-    //
-    //         if (string.IsNullOrEmpty(connectionString) || connectionString.Trim().Length < 40)
-    //         {
-    //             throw new ApplicationException("No connection string configured.");
-    //         }
-    //         
-    //         optionsBuilder.UseSqlServer(connectionString,
-    //                 opts =>
-    //                 {
-    //                     opts.CommandTimeout(sqlTimeout);
-    //                     opts.EnableRetryOnFailure();
-    //                 })
-    //             .EnableSensitiveDataLogging(_config.ApplicationSettingsConfig.EnableSensitiveDataLogging())
-    //             .EnableDetailedErrors(false)
-    //             .UseLoggerFactory(_loggerFactory);
-    //     }
-    //
-    //     base.OnConfiguring(optionsBuilder);
-    // }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
