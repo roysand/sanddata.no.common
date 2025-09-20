@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.0.56</Version>
+        <Version>1.0.57</Version>
         <Title>Datalayer for AMS project</Title>
         <Authors>Roy Sand</Authors>
         <Copyright>Sanddata</Copyright>
@@ -17,6 +17,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="12.0.1" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
         <PrivateAssets>all</PrivateAssets>
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -28,6 +29,10 @@
       <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.3.7.1207" />
       <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
       <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.10" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="src\Application\Common\" />
     </ItemGroup>
 
 </Project>
