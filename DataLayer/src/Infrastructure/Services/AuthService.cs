@@ -54,7 +54,12 @@ public class AuthService : IAuthService
 
     public async Task<LoginAppUserVm?> LoginAsync(LoginAppUserDto request, CancellationToken cancellationToken = default)
     {
-        var appUser = await _appContext.AppUserSet.FirstOrDefaultAsync(u => u.Email == request.Email, cancellationToken);
+        var appUser = await _appContext.AppUserSet
+            .Where(w => Microsoft.EntityFrameworkCore.EF.Functions.Like(w.Email,request.Email))
+            .Include(r => r.AppUserRoles)!
+            .ThenInclude(r => r.Role)
+            .FirstOrDefaultAsync(cancellationToken);
+        
         if (appUser is null)
         {
             return null;
