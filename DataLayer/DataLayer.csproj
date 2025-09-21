@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.0.57</Version>
+        <Version>1.0.59</Version>
         <Title>Datalayer for AMS project</Title>
         <Authors>Roy Sand</Authors>
         <Copyright>Sanddata</Copyright>
@@ -33,6 +33,7 @@
 
     <ItemGroup>
       <Folder Include="src\Application\Common\" />
+      <Folder Include="src\Infrastructure\Interface\" />
     </ItemGroup>
 
 </Project>
