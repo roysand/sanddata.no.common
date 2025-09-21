@@ -1,6 +1,13 @@
-﻿namespace sanddata.no.ams.api.Application.Common.CommandsAndQueries.AppUser.Commands.Login;
+﻿using DataLayer.Application.Common.Mappings;
+using DataLayer.Application.Models.CommandsAndQueries.AppUser.Common;
 
-public class LoginAppUserVm
+namespace DataLayer.Application.Models.CommandsAndQueries.AppUser.Commands.Login;
+
+public class LoginAppUserVm : CommonLoginAppUserVm, IMapFrom<Domain.Entities.AppUser>
 {
-    public string Token { get; set; } = string.Empty!;
+    public void Mapping(AutoMapper.Profile profile)
+    {
+        profile.CreateMap<Domain.Entities.AppUser, LoginAppUserVm>().ReverseMap();
+        profile.CreateMap<CommonCreateTokenResponseVm, LoginAppUserVm>().ReverseMap();
+    }
 }
