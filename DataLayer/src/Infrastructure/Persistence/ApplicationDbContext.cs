@@ -12,8 +12,9 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     private readonly IConfig _config;
     private readonly ILoggerFactory _loggerFactory;
 
-    public ApplicationDbContext(IConfig config, ILoggerFactory loggerFactory)
-        : base(GetOptions())
+    public ApplicationDbContext(IConfig config, ILoggerFactory loggerFactory
+        , DbContextOptions<ApplicationDbContext> options)
+        : base(options)
     {
         _config = config;
         _loggerFactory = loggerFactory;
