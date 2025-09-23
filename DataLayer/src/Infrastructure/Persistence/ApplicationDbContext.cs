@@ -13,7 +13,7 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     private readonly ILoggerFactory _loggerFactory;
 
     public ApplicationDbContext(IConfig config, ILoggerFactory loggerFactory
-        , DbContextOptions<ApplicationDbContext> options)
+        , DbContextOptions options)
         : base(options)
     {
         _config = config;
