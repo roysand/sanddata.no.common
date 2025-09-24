@@ -9,13 +9,13 @@ public class CommonAppUserVm : IMapFrom<DataLayer.Domain.Entities.AppUser>
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string Email { get; set; } = string.Empty;
-    public ICollection<Location>? Locations { get; set; }
+    public ICollection<Domain.Entities.Location>? Locations { get; set; }
 
     public CommonAppUserVm()
     {
         
     }
-    public CommonAppUserVm(string firstName, string lastName, string email, ICollection<Location> locations)
+    public CommonAppUserVm(string firstName, string lastName, string email, ICollection<Domain.Entities.Location> locations)
     {
         FirstName = firstName;
         LastName = lastName;
