@@ -1,5 +1,4 @@
 ﻿using DataLayer.Application.Common.Mappings;
-using NetTopologySuite.Geometries;
 
 namespace DataLayer.Application.Models.CommandsAndQueries.AppUser.Common;
 

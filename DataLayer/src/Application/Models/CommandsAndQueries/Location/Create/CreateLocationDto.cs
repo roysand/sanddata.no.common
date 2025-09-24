@@ -6,8 +6,8 @@ namespace DataLayer.Application.Models.CommandsAndQueries.Location.Create;
 
 public class CreateLocationDto : CommonLocationDto, IMapFrom<Domain.Entities.Location>
 {
-    public void Mapping(Profile profile)
+    public new void Mapping(Profile profile)
     {
-        profile.CreateMap<CreateLocationDto, CommonLocationDto>().ReverseMap();
+        profile.CreateMap<Domain.Entities.Location, CommonLocationDto>().ReverseMap();
     }
 }

@@ -8,4 +8,9 @@ public class CommonLocationDto : IMapFrom<DataLayer.Domain.Entities.Location>
     public string LocationName { get; set; } = null!;
     public string? LocationAddress { get; set; }
     public string? SerialNumber { get; set; }
+    
+    public void Mapping(AutoMapper.Profile profile)
+    {
+        profile.CreateMap<CommonLocationDto, DataLayer.Domain.Entities.Location>().ReverseMap();
+    }
 }

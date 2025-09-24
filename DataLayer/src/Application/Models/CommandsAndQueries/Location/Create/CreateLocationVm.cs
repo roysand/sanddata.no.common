@@ -1,13 +1,14 @@
 using AutoMapper;
 using DataLayer.Application.Common.Mappings;
-using sanddata.no.ams.api.Application.Common.CommandsAndQueries.Location.Common;
+using DataLayer.Application.Models.CommandsAndQueries.Location.Common;
 
 namespace DataLayer.Application.Models.CommandsAndQueries.Location.Create;
 
-public class CreateLocationVm : CommonLocationVm, IMapFrom<Domain.Entities.AppUser>
+public class CreateLocationVm : CommonLocationVm, IMapFrom<DataLayer.Domain.Entities.Location>
 {
-    public void Mapping(Profile profile)
+    public Guid LocationId { get; set; }
+    public new void Mapping(Profile profile)
     {
-        profile.CreateMap<CreateLocationVm, CommonLocationVm>().ReverseMap();
+        profile.CreateMap<DataLayer.Domain.Entities.Location, CreateLocationVm>().ReverseMap();
     }
 }
