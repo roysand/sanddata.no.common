@@ -6,5 +6,6 @@ public class RefreshTokensVm : IMapFrom<Domain.Entities.AppUser>
 {
     public Guid AppUserId { get; set; }
     public required string AccessToken { get; set; }
+    public required int ExpiresIn { get; set; }
     public required string RefreshToken { get; set; }
 }

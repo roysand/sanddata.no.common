@@ -109,7 +109,7 @@ public class AuthService : IAuthService
     {
         var refreshToken = GenerateRefreshToken();
         appUser.RefreshToken = refreshToken;
-        appUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
+        appUser.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(_configuration.GetValue<int>("JwtSettings:RefreshTokenExpiryDays"));
         await _appContext.SaveChangesAsync(cancellationToken);
         
         return refreshToken;
@@ -133,7 +133,7 @@ public class AuthService : IAuthService
             Encoding.UTF8.GetBytes(_configuration.GetValue<string>("JwtSettings:SecretKey")!));
 
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
-        var tokenExpireDate = DateTime.Now.AddDays(_configuration.GetValue<int>("JwtSettings:ExpiryDays"));
+        var tokenExpireDate = DateTime.Now.AddMinutes(_configuration.GetValue<int>("JwtSettings:TokenExpiryMinutes"));
 
         var tokenDescriptor = new JwtSecurityToken(
             issuer: _configuration.GetValue<string>("JwtSettings:Issuer"),
@@ -151,7 +151,8 @@ public class AuthService : IAuthService
         {
             AppUserId = appUser.AppUserId,
             AccessToken = CreateToken(appUser),
-            RefreshToken = await GenerateAndSaveRefreshTokenAsync(appUser, cancellationToken)
+            RefreshToken = await GenerateAndSaveRefreshTokenAsync(appUser, cancellationToken),
+            ExpiresIn = _configuration.GetValue<int>("JwtSettings:TokenExpiryMinutes") * 60
         };
     }
     
