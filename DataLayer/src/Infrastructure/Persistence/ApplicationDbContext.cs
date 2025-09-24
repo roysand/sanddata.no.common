@@ -1,8 +1,10 @@
 ﻿using System.Reflection;
 using DataLayer.Application.Interface;
+using DataLayer.Domain.Common.Entities;
 using DataLayer.Domain.Entities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
 
 namespace DataLayer.Infrastructure.Persistence;
@@ -42,6 +44,7 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
+        UpdateSystemColumns("AMS");
         var result = await base.SaveChangesAsync(cancellationToken);
         return result;
     }
@@ -54,4 +57,29 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     }
     
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    
+    private void UpdateSystemColumns(string databaseUserName)
+    {
+        string timeZoneId = "Europe/Oslo";
+        TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+        var now = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZone);
+        
+        foreach (EntityEntry<AuditableEntity> entry in ChangeTracker
+                     .Entries<AuditableEntity>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.CreatedDate = now;
+                    entry.Entity.ChangedDate = now;
+                    break;
+
+                case EntityState.Modified:
+                    entry.Entity.ChangedDate = now;
+                    break;
+            }
+
+        }
+    }
+
 }
