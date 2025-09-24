@@ -5,7 +5,7 @@ namespace DataLayer.Domain.Entities;
 public class Location : AuditableEntity
 {
     public Guid LocationId { get; set; }
-
+    public bool IsActive { get; set; }
     public string LocationName { get; set; } = null!;
 
     public string? LocationAddress { get; set; }

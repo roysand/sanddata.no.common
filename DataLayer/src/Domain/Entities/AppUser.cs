@@ -3,6 +3,7 @@
 public class AppUser
 {
     public Guid AppUserId { get; set; }
+    public bool IsActive { get; set; } 
     public string FirstName { get; set; } = string.Empty;
     public string LastName { get; set; } = string.Empty;
     public string HashedPassword { get; set; } = string.Empty;
