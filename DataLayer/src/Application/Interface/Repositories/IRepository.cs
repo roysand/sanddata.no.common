@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace DataLayer.Application.Interface
+namespace DataLayer.Application.Interface.Repositories
 {
     public interface IRepository
     {

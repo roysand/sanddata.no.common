@@ -1,12 +1,12 @@
 ﻿using System.Linq.Expressions;
 
-namespace sanddata.no.ams.api.Application.Common.Interfaces.Repositories;
+namespace DataLayer.Application.Interface.Repositories;
 
-public interface IEFRepository
+public interface IBaseRepository
 {
 }
 
-public interface IEFRepository<T> : IEFRepository where T : class
+public interface IBaseRepository<T> : IBaseRepository where T : class
 {
     T Insert(T entity);
     T Update(T entity);
