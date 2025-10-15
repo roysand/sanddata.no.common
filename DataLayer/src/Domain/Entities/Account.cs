@@ -5,12 +5,11 @@ namespace DataLayer.Domain.Entities;
 
 public sealed class Account : Entity<Guid>
 {
-    public Account(Guid id, string accountName, bool active, Guid? apiKeyId, ApiKey? apiKey) : base(id)
+    public Account(Guid id, string accountName, bool active, Guid? apiKeyId) : base(id)
     {
         AccountName = accountName;
         Active = active;
         ApiKeyId = apiKeyId;
-        ApiKey = apiKey;
     }
 
     public Guid AccountId { get; set; }
