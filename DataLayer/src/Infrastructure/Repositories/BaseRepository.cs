@@ -82,8 +82,15 @@ public class BaseRepository<T> : IBaseRepository where T : class
         return await query.ToListAsync(cancellationToken);    
     }
 
-    public async Task<IEnumerable<T?>> All(CancellationToken cancellationToken)
+    public async Task<IEnumerable<T?>> All(CancellationToken cancellationToken, bool asNoTracking = false)
     {
+        if (asNoTracking)
+        {
+            return await _context.Set<T>()
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
+        }
+        
         return await _context.Set<T>().ToListAsync(cancellationToken);
     }
 

@@ -19,7 +19,7 @@ public interface IBaseRepository<T> : IBaseRepository where T : class
     Task<IEnumerable<T?>> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken,
         bool noTrack = false);
 
-    Task<IEnumerable<T?>> All(CancellationToken cancellationToken);
+    Task<IEnumerable<T?>> All(CancellationToken cancellationToken, bool asNoTracking = false);
     Task<bool> Exists(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken);
 
     Task<int> SaveChanges(CancellationToken cancellationToken);
