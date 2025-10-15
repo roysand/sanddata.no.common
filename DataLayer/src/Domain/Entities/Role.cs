@@ -2,10 +2,16 @@
 
 namespace DataLayer.Domain.Entities;
 
-public class Role : AuditableEntity
+public sealed class Role : AuditableEntity
 {
-    public Guid RoleId { get; set; } = Guid.NewGuid();
+    public Role(Guid id, string roleName, string roleDescription) : base(id)
+    {
+        RoleName = roleName;
+        RoleDescription = roleDescription;
+    }
+
+    public Guid RoleId { get; set; }
     public string RoleName { get; set; } = null!;
     public string RoleDescription { get; set; } = null!;
-    public virtual ICollection<AppUserRole> AppUserRoles{ get; init; } = new List<AppUserRole>();
+    public ICollection<AppUserRole> AppUserRoles{ get; init; } = new List<AppUserRole>();
 }

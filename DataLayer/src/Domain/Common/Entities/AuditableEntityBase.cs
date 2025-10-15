@@ -1,6 +1,12 @@
-﻿namespace DataLayer.Domain.Common.Entities;
+﻿using DataLayer.Domain.Common.Primitives;
 
-public abstract class AuditableEntityBase
+namespace DataLayer.Domain.Common.Entities;
+
+public abstract class AuditableEntityBase : Entity<Guid>
 {
+    protected AuditableEntityBase(Guid id) : base(id)
+    {
+    }
+
     public DateTime ChangedDate { get; set; }
 }
