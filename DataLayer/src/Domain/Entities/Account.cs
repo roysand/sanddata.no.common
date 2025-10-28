@@ -3,7 +3,7 @@ using DataLayer.Domain.Common.Primitives;
 
 namespace DataLayer.Domain.Entities;
 
-public sealed class Account : Entity<Guid>
+public sealed class Account : AuditableEntity
 {
     public Account(Guid id, string accountName, bool active, Guid? apiKeyId) : base(id)
     {
