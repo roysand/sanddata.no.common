@@ -5,7 +5,8 @@ namespace DataLayer.Domain.Entities;
 
 public sealed class Account : AuditableEntity
 {
-    public Account(Guid id, string accountName, bool active, Guid? apiKeyId) : base(id)
+    private readonly List<AccountContact> _contacts = new();
+    internal Account(Guid id, string accountName, bool active, Guid? apiKeyId) : base(id)
     {
         AccountName = accountName;
         Active = active;
@@ -16,6 +17,6 @@ public sealed class Account : AuditableEntity
     public string AccountName { get; set; } = null!;
     public bool Active { get; set; }
     public Guid? ApiKeyId { get; set; }
-    public ICollection<AccountContact> AccountContact { get; set; } = new List<AccountContact>();
+    public IReadOnlyCollection<AccountContact> AccountContact => _contacts;
     public ApiKey? ApiKey { get; set; }
 }

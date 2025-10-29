@@ -1,7 +1,7 @@
 namespace DataLayer.Domain.Common.Primitives;
 public abstract class Entity<TKey> : IEquatable<Entity<TKey>>
 {
-    public TKey Id { get; private set; }
+    public TKey Id { get; private init; }
 
     protected Entity(TKey id)
     {

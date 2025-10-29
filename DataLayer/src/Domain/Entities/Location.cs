@@ -1,10 +1,12 @@
 ﻿using DataLayer.Domain.Common.Entities;
+using DataLayer.Domain.Common.Primitives;
 
 namespace DataLayer.Domain.Entities;
 
 public sealed class Location : AuditableEntity
 {
-    public Location(Guid id, bool isActive, string locationName, string? locationAddress, string? serialNumber, Guid? apiKeyId) : base(id)
+    public Location(Guid id, bool isActive, string locationName, string? locationAddress, string? serialNumber, Guid? apiKeyId)
+        : base(id)
     {
         IsActive = isActive;
         LocationName = locationName;
@@ -13,7 +15,7 @@ public sealed class Location : AuditableEntity
         ApiKeyId = apiKeyId;
     }
 
-    public Guid LocationId { get; set; }
+    private Guid LocationId { get; set; }
     public bool IsActive { get; set; }
     public string LocationName { get; set; } = null!;
 
