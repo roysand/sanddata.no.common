@@ -4,7 +4,7 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <Version>1.0.81</Version>
+        <Version>1.0.84</Version>
         <Title>Datalayer for AMS project</Title>
         <Authors>Roy Sand</Authors>
         <Copyright>Sanddata</Copyright>
@@ -23,7 +23,7 @@
         <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       </PackageReference>
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="9.0.0" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="9.0.9" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.0" />
       <PackageReference Include="MQTTnet" Version="4.3.7.1207" />
       <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.3.7.1207" />

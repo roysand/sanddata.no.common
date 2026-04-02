@@ -8,10 +8,10 @@ public class LocationConfiguration : IEntityTypeConfiguration<Location>
 {
     public void Configure(EntityTypeBuilder<Location> builder)
     {
-        builder.HasKey(e => e.LocationId);
+        builder.HasKey(e => e.Id).HasName("PK_Location_Id");
         builder.ToTable("Location");
-
-        builder.Property(e => e.LocationId).ValueGeneratedNever();
+        
+        builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.LocationAddress)
             .HasMaxLength(100)
             .IsUnicode(false);

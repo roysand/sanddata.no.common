@@ -1,6 +1,8 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
 
-public class AppUser
+namespace DataLayer.Domain.Entities;
+
+public sealed class AppUser : AuditableEntity
 {
     public Guid AppUserId { get; set; }
     public bool IsActive { get; set; } 
@@ -10,14 +12,19 @@ public class AppUser
     public string Email { get; set; } = string.Empty;
     public string? RefreshToken { get; set; }
     public DateTime? RefreshTokenExpiryTime { get; set; }
-    public virtual ICollection<AppUserLocation>? AppUserLocations { get; init; } = new List<AppUserLocation>();
-    public virtual ICollection<AppUserRole>? AppUserRoles  { get; init; } = new List<AppUserRole>();
+    public ICollection<AppUserLocation>? AppUserLocations { get; init; } = new List<AppUserLocation>();
+    public ICollection<AppUserRole>? AppUserRoles  { get; init; } = new List<AppUserRole>();
 
-    public AppUser()
+    public AppUser(Guid id, Guid appUserId, bool isActive, string? refreshToken, DateTime? refreshTokenExpiryTime) : base(id)
     {
+        AppUserId = appUserId;
+        IsActive = isActive;
+        RefreshToken = refreshToken;
+        RefreshTokenExpiryTime = refreshTokenExpiryTime;
     }
 
-    public AppUser(Guid appUserId, string firstName, string lastName, string hashedPassword, string email)
+    public AppUser(Guid id, Guid appUserId, string firstName, string lastName, string hashedPassword, string email) 
+            : base(id)
     {
         AppUserId = appUserId;
         FirstName = firstName;

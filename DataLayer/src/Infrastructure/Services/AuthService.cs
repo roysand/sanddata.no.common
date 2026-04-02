@@ -37,13 +37,13 @@ public class AuthService : IAuthService
         {
             return null;
         }
-
-        var appUser = new AppUser();
-        var hashedPassword = new PasswordHasher<AppUser>()
+        var appUser = new AppUser( Guid.NewGuid(), Guid.NewGuid(), request.FirstName, request.LastName, "", request.Email)
+        {
+            Email = request.Email,
+            HashedPassword = ""
+        };
+        appUser.HashedPassword = new PasswordHasher<AppUser>()
             .HashPassword(appUser, request.Password);
-
-        appUser.Email = request.Email;
-        appUser.HashedPassword = hashedPassword;
 
         _appContext.AppUserSet.Add(appUser);
         await _appContext.SaveChangesAsync(cancellationToken);
