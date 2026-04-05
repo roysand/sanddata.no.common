@@ -1,17 +1,20 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
 
-public class PriceDetail
+namespace DataLayer.Domain.Entities;
+
+public class PriceDetail : AuditableEntity
 {
-    public Guid PriceDetailId { get; set; }
-
     public Guid PriceId { get; set; }
 
     public DateTime PricePeriod { get; set; }
 
     public decimal Amount { get; set; }
 
-    public PriceDetail()
+    public PriceDetail() : base(Guid.NewGuid())
     {
-        PriceDetailId = Guid.NewGuid();
+    }
+
+    public PriceDetail(Guid id) : base(id)
+    {
     }
 }

@@ -10,8 +10,7 @@ public sealed class Role : AuditableEntity
         RoleDescription = roleDescription;
     }
 
-    public Guid RoleId { get; set; }
     public string RoleName { get; set; } = null!;
     public string RoleDescription { get; set; } = null!;
-    public ICollection<AppUserRole> AppUserRoles{ get; init; } = new List<AppUserRole>();
+    public ICollection<AppUserRole> AppUserRoles { get; init; } = new List<AppUserRole>();
 }

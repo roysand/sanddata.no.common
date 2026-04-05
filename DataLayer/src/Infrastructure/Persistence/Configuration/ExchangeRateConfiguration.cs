@@ -8,7 +8,7 @@ public class ExchangeRateConfiguration : IEntityTypeConfiguration<ExchangeRate>
 {
     public void Configure(EntityTypeBuilder<ExchangeRate> builder)
     {
-        builder.HasKey(e => e.ExchangeRateId)
+        builder.HasKey(e => e.Id)
             .HasName("exchange_rate_pk")
             .IsClustered(false);
 
@@ -16,9 +16,9 @@ public class ExchangeRateConfiguration : IEntityTypeConfiguration<ExchangeRate>
 
         builder.HasIndex(e => e.ExchangeRatePeriod, "IX_exchange_rate_exchangerateperiod");
 
-        builder.HasIndex(e => e.ExchangeRateId, "uk_exchange_rate").IsUnique();
+        builder.HasIndex(e => e.Id, "uk_exchange_rate").IsUnique();
 
-        builder.Property(e => e.ExchangeRateId).ValueGeneratedNever();
+        builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.ExchangeRateValue)
             .HasColumnType("decimal(19, 5)")
             .HasColumnName("ExchangeRate");

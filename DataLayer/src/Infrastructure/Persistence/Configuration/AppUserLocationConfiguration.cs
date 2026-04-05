@@ -15,11 +15,13 @@ public class AppUserLocationConfiguration : IEntityTypeConfiguration<AppUserLoca
         builder.HasOne(e => e.AppUser)
             .WithMany(u => u.AppUserLocations)
             .HasForeignKey(e => e.AppUserId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_appuser_location_AppUser");
 
         builder.HasOne(e => e.Location)
             .WithMany(l => l.UserLocations)
             .HasForeignKey(e => e.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_appuser_location_Location");
     }
 }

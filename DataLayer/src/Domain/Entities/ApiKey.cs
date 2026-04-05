@@ -10,7 +10,6 @@ public sealed class ApiKey : AuditableEntity
         Admin = admin;
     }
 
-    public Guid ApiKeyId { get; set; }
     public string Key { get; set; } = null!;
     public bool Admin { get; set; }
     public ICollection<Account> Account { get; set; } = new List<Account>();

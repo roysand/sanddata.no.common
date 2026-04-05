@@ -8,9 +8,11 @@ public class AccountContactConfiguration : IEntityTypeConfiguration<AccountConta
 {
     public void Configure(EntityTypeBuilder<AccountContact> builder)
     {
+        builder.HasKey(e => e.Id).HasName("PK_AccountContact");
+
         builder.ToTable("AccountContact", "dbo");
 
-        builder.Property(e => e.AccountContactId).ValueGeneratedNever();
+        builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.ContactEmail)
             .HasMaxLength(100)
             .IsUnicode(false);

@@ -8,10 +8,10 @@ public class AppUserConfiguration : IEntityTypeConfiguration<AppUser>
 {
     public void Configure(EntityTypeBuilder<AppUser> builder)
     {
-        builder.HasKey(e => e.AppUserId);
+        builder.HasKey(e => e.Id).HasName("PK_AppUser");
         builder.ToTable("AppUser");
-        
-        builder.Property(e => e.AppUserId).ValueGeneratedNever();
+
+        builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.FirstName).HasMaxLength(100);
         builder.Property(e => e.LastName).HasMaxLength(100);
         builder.Property(e => e.Email).HasMaxLength(100);

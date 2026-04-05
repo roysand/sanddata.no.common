@@ -1,16 +1,18 @@
-﻿using System.Security.AccessControl;
+﻿using DataLayer.Domain.Common.Entities;
 
 namespace DataLayer.Domain.Entities;
 
-public class Hour
+public class Hour : AuditableCompositeEntity
 {
     public DateTime TimeStamp { get; set; }
 
     public Guid LocationId { get; set; }
+
     public string? Unit { get; set; }
 
     public decimal? ValueNum { get; set; }
 
     public short? Count { get; set; }
-    public virtual Location? Location { get; set; }
+
+    public Location? Location { get; set; }
 }
