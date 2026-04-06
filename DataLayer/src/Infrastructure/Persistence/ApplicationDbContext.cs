@@ -2,7 +2,6 @@
 using DataLayer.Application.Interface;
 using DataLayer.Domain.Common.Entities;
 using DataLayer.Domain.Entities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Logging;
@@ -21,13 +20,13 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
         _config = config;
         _loggerFactory = loggerFactory;
     }
-    
+
     private static DbContextOptions<ApplicationDbContext> GetOptions()
     {
         var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
         return optionsBuilder.Options;
     }
-    
+
     public DbSet<RawData> RawSet { get; set; } = null!;
     public DbSet<Detail> DetailSet { get; set; } = null!;
     public DbSet<Minute> MinuteSet { get; set; } = null!;
@@ -41,7 +40,7 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
     // Authorization
     public DbSet<ApiKey> ApiKeySet { get; set; }
     public DbSet<AppUser> AppUserSet { get; set; }
-    
+
     public async Task<int> SaveChanges(CancellationToken cancellationToken)
     {
         UpdateSystemColumns("AMS");
@@ -55,15 +54,16 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         OnModelCreatingPartial(modelBuilder);
     }
-    
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-    
+
     private void UpdateSystemColumns(string databaseUserName)
     {
         string timeZoneId = "Europe/Oslo";
         TimeZoneInfo timeZone = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
         var now = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, timeZone);
-        
+
+        // Handle entities with surrogate Id (AuditableEntity)
         foreach (EntityEntry<AuditableEntity> entry in ChangeTracker
                      .Entries<AuditableEntity>())
         {
@@ -78,8 +78,23 @@ public partial class ApplicationDbContext : DbContext, IApplicationDbContext
                     entry.Entity.ChangedDate = now;
                     break;
             }
+        }
 
+        // Handle composite-key entities (AuditableCompositeEntity)
+        foreach (EntityEntry<AuditableCompositeEntity> entry in ChangeTracker
+                     .Entries<AuditableCompositeEntity>())
+        {
+            switch (entry.State)
+            {
+                case EntityState.Added:
+                    entry.Entity.CreatedDate = now;
+                    entry.Entity.ChangedDate = now;
+                    break;
+
+                case EntityState.Modified:
+                    entry.Entity.ChangedDate = now;
+                    break;
+            }
         }
     }
-
 }

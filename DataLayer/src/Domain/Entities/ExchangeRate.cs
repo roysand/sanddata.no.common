@@ -1,22 +1,25 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
+
+namespace DataLayer.Domain.Entities;
 
 public enum ExchangeRateTypes
 {
     EUR = 1
 }
 
-public class ExchangeRate
+public class ExchangeRate : AuditableEntity
 {
-    public Guid ExchangeRateId { get; set; }
-
     public DateTime ExchangeRatePeriod { get; set; }
 
     public decimal? ExchangeRateValue { get; set; }
 
     public int ExchangeRateType { get; set; }
 
-    public ExchangeRate()
+    public ExchangeRate() : base(Guid.NewGuid())
     {
-        ExchangeRateId = Guid.NewGuid();
+    }
+
+    public ExchangeRate(Guid id) : base(id)
+    {
     }
 }

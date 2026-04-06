@@ -1,11 +1,10 @@
+using DataLayer.Domain.Common.Entities;
 using DataLayer.Domain.Common.Enum;
 
 namespace DataLayer.Domain.Entities;
 
-public class Detail
+public class Detail : AuditableEntity
 {
-    public Guid Id { get; set; }
-
     public Guid MeasurementId { get; set; }
 
     public DateTime TimeStamp { get; set; }
@@ -13,7 +12,7 @@ public class Detail
     public Guid LocationId { get; set; }
 
     public string? Name { get; set; }
-    
+
     public ObisCodeId ObisCodeId { get; set; }
 
     public string? ObisCode { get; set; }
@@ -23,11 +22,16 @@ public class Detail
     public string? ValueStr { get; set; }
 
     public decimal ValueNum { get; set; }
-    public virtual Location? Location { get; set; }
 
-    public Detail()
+    public Location? Location { get; set; }
+
+    public Detail(Guid id) : base(id)
     {
-        Id = Guid.NewGuid();
-        ObisCodeId = Common.Enum.ObisCodeId.PowerUsed;
+        ObisCodeId = ObisCodeId.PowerUsed;
+    }
+
+    public Detail() : base(Guid.NewGuid())
+    {
+        ObisCodeId = ObisCodeId.PowerUsed;
     }
 }

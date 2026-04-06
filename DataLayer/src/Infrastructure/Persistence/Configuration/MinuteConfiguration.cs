@@ -15,7 +15,6 @@ public class MinuteConfiguration : IEntityTypeConfiguration<Minute>
         builder.HasIndex(e => e.TimeStamp, "IX_Minute_TimeStamp");
 
         builder.Property(e => e.TimeStamp).HasPrecision(3);
-
         builder.Property(e => e.Unit)
             .HasMaxLength(5)
             .IsUnicode(false);
@@ -24,6 +23,7 @@ public class MinuteConfiguration : IEntityTypeConfiguration<Minute>
         builder.HasOne(e => e.Location)
             .WithMany(m => m.Minutes)
             .HasForeignKey(e => e.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Minute_Location");
     }
 }

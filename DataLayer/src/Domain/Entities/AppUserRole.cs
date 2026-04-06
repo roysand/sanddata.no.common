@@ -1,10 +1,12 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
 
-public class AppUserRole
+namespace DataLayer.Domain.Entities;
+
+public class AppUserRole : AuditableCompositeEntity
 {
     public Guid AppUserId { get; set; }
     public AppUser AppUser { get; set; } = null!;
-    
+
     public Guid RoleId { get; set; }
     public Role Role { get; set; } = null!;
 }

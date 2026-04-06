@@ -22,10 +22,11 @@ public class DayConfiguration : IEntityTypeConfiguration<Day>
             .HasMaxLength(5)
             .IsUnicode(false);
         builder.Property(e => e.ValueNum).HasColumnType("decimal(19, 5)");
-        
+
         builder.HasOne(e => e.Location)
             .WithMany(d => d.Days)
             .HasForeignKey(e => e.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Day_Location");
     }
 }

@@ -31,9 +31,11 @@ public class DetailConfiguration : IEntityTypeConfiguration<Detail>
         builder.Property(e => e.ValueStr)
             .HasMaxLength(100)
             .IsUnicode(false);
+
         builder.HasOne(e => e.Location)
             .WithMany(d => d.Details)
             .HasForeignKey(e => e.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Detail_Location");
     }
 }

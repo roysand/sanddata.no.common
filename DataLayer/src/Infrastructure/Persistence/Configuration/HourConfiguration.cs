@@ -19,9 +19,11 @@ public class HourConfiguration : IEntityTypeConfiguration<Hour>
             .HasMaxLength(5)
             .IsUnicode(false);
         builder.Property(e => e.ValueNum).HasColumnType("decimal(19, 5)");
+
         builder.HasOne(e => e.Location)
-            .WithMany(h =>h.Hours)
+            .WithMany(h => h.Hours)
             .HasForeignKey(e => e.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Hour_Location");
     }
 }

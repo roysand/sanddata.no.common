@@ -1,9 +1,0 @@
-{
-  "ApplicationSettings": {
-    "DbConnectionString3": "Server=tcp:sandaasiot.database.windows.net,1433;Initial Catalog=sandaas_iot;Persist Security Info=False;User ID=app_user;Password=t[rw8Y^V]g3ZTrwamv!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-    "DbConnectionString1": "Server=sda-mssql2022,1433;Initial Catalog=han;Persist Security Info=False;Integrated Security=True;MultipleActiveResultSets=False;Encrypt=true;TrustServerCertificate=True;Connection Timeout=30;",
-    "DbConnectionString2": "Server=sda-mssql2022,1433;Initial Catalog=han_test;Persist Security Info=False;Integrated Security=True;MultipleActiveResultSets=False;Encrypt=true;TrustServerCertificate=True;Connection Timeout=30;",
-    "DbConnectionString": "Server=tcp:norway-east-my-free-databaseserver.database.windows.net,1433;Initial Catalog=my_free_database;Persist Security Info=False;User ID=ellinor;Password=Wendia_Milo;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;",
-    "EnableSensitiveDataLogging": true
-  }
-}

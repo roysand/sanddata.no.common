@@ -1,6 +1,8 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
 
-public class AppUserLocation
+namespace DataLayer.Domain.Entities;
+
+public class AppUserLocation : AuditableCompositeEntity
 {
     public Guid AppUserId { get; set; }
     public AppUser AppUser { get; set; } = null!;

@@ -37,7 +37,7 @@ public class AuthService : IAuthService
         {
             return null;
         }
-        var appUser = new AppUser( Guid.NewGuid(), Guid.NewGuid(), request.FirstName, request.LastName, "", request.Email)
+        var appUser = new AppUser(Guid.NewGuid(), request.FirstName, request.LastName, "", request.Email)
         {
             Email = request.Email,
             HashedPassword = ""
@@ -119,7 +119,7 @@ public class AuthService : IAuthService
     {
         var claims = new List<Claim>
         {
-            new Claim("id", appUser.AppUserId.ToString()),
+            new Claim("id", appUser.Id.ToString()),
             new Claim(ClaimTypes.Email, appUser.Email),
             new Claim(ClaimTypes.Name, appUser.FirstName + " " + appUser.LastName)
         };
@@ -149,7 +149,7 @@ public class AuthService : IAuthService
     {
         return new CommonCreateTokenResponseVm
         {
-            AppUserId = appUser.AppUserId,
+            AppUserId = appUser.Id,
             AccessToken = CreateToken(appUser),
             RefreshToken = await GenerateAndSaveRefreshTokenAsync(appUser, cancellationToken),
             ExpiresIn = _configuration.GetValue<int>("JwtSettings:TokenExpiryMinutes") * 60

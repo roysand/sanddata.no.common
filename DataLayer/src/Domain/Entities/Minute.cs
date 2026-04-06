@@ -1,6 +1,8 @@
-﻿namespace DataLayer.Domain.Entities;
+﻿using DataLayer.Domain.Common.Entities;
 
-public class Minute
+namespace DataLayer.Domain.Entities;
+
+public class Minute : AuditableCompositeEntity
 {
     public DateTime TimeStamp { get; set; }
 
@@ -11,5 +13,6 @@ public class Minute
     public decimal? ValueNum { get; set; }
 
     public short? Count { get; set; }
-    public virtual Location? Location { get; set; }
+
+    public Location? Location { get; set; }
 }

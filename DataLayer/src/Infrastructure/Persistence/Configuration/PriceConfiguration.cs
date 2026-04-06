@@ -8,17 +8,17 @@ public class PriceConfiguration : IEntityTypeConfiguration<Price>
 {
     public void Configure(EntityTypeBuilder<Price> builder)
     {
-        builder.HasKey(e => e.PriceId)
+        builder.HasKey(e => e.Id)
             .HasName("price_pk")
             .IsClustered(false);
 
         builder.ToTable("price");
 
-        builder.HasIndex(e => e.PriceId, "IX_Price_Id");
+        builder.HasIndex(e => e.Id, "IX_Price_Id");
 
         builder.HasIndex(e => e.PricePeriod, "IX_Price_PricePeriod").IsUnique();
 
-        builder.Property(e => e.PriceId).ValueGeneratedNever();
+        builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.Average).HasColumnType("decimal(19, 5)");
         builder.Property(e => e.Currency)
             .HasMaxLength(5)
@@ -36,9 +36,11 @@ public class PriceConfiguration : IEntityTypeConfiguration<Price>
         builder.Property(e => e.Unit)
             .HasMaxLength(5)
             .IsUnicode(false);
+
         builder.HasOne(e => e.Location)
             .WithMany()
             .HasForeignKey(e => e.LocationId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .OnDelete(DeleteBehavior.Restrict)
+            .HasConstraintName("FK_Price_Location");
     }
 }
